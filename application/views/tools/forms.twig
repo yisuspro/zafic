@@ -1,0 +1,11 @@
+{% macro input(name, value, type, size, modal) %}
+<input type="{{ type }}" name="{{ name }}" value="{{ value }}" size="{{ size }}" />
+{% endmacro %}
+{% macro buttom_modal(name, class, title, text, type) %}
+    <a id="{{ name }}" href="javascript:;" class="btn btn-simple btn-icon btn-{{ type }} {{ name }}" title="{{ title }}" data-toggle="modal" data-target="#exampleModal {{ modal }}"><i class="{{ class }}"></i> {{ text }}</a>{% endmacro %}
+
+{% macro buttom(name, class, title, text, type) %}
+
+    <a id="{{ name }}" href="javascript:;" class="btn btn-simple btn-icon btn-{{ type }} {{ name }}" title="{{ title }}" ><i class="{{ class }}"></i> {{ text }}</a>
+
+{% endmacro %}
