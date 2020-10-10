@@ -28,6 +28,11 @@ class Migration_create_tbl_users extends CI_Migration {
                 'constraint' => 10,
                 'unsigned' => TRUE,
             ),
+             'USER_convocatoria' => array(                         //columna USER_PK tipo int, tamaño 10, auto icremental, solo positivos
+                'type' => 'INT',
+                'constraint' => 10,
+                'unsigned' => TRUE,
+            ),
             'USER_username' => array(                   //columna USER_username tipo VARCHAR, tamaño 45
                 'type' => 'VARCHAR',
                 'constraint' => '45',
@@ -48,6 +53,16 @@ class Migration_create_tbl_users extends CI_Migration {
                 'null' => TRUE,
             ),
             'USER_email' => array(                      //columna USER_email tipo VARCHAR, tamaño 45,no vacio
+                'type' => 'VARCHAR',
+                'constraint' => '45',
+                'null' => TRUE,
+            ),
+            'USER_city' => array(                      //columna USER_email tipo VARCHAR, tamaño 45,no vacio
+                'type' => 'VARCHAR',
+                'constraint' => '45',
+                'null' => TRUE,
+            ),
+            'USER_country' => array(                      //columna USER_email tipo VARCHAR, tamaño 45,no vacio
                 'type' => 'VARCHAR',
                 'constraint' => '45',
                 'null' => TRUE,

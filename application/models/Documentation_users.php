@@ -9,7 +9,7 @@
 * contiene todas las consultas sql a la base de datos
 * 
 */
-class Cicle extends CI_Model {
+class Documentation_users extends CI_Model {
     
     /**
     * metodo constructor donde se cargan todos los helpers, librerias necesarios en el modelo
@@ -22,67 +22,9 @@ class Cicle extends CI_Model {
         
     }
     
-    /**
-    * funcion para la verificacion y envio de los datos del plan solicitado.
-    * @param int $datos
-    * @return get() | false
-    */
-    public function datosCicle($datos){
-        if(!$rol= $this->db->select('*')->from('cicles')
-           ->join('plans','cicles.CCLS_FK_plans = plans.PLAN_PK')
-           ->where('CCLS_PK',$datos)){
-            return false;
-        }else{
-            return $rol->get();
-        }
-    }
     
-    /**
-    * funcion para la consulta de todos los planes a la base de datos.
-    * 
-    * @return get() 
-    */
-    public function listar(){
-        $rol= $this->db->select('*')
-            ->from('cicles')
-            ->join('plans','cicles.CCLS_FK_plans = plans.PLAN_PK');
-           //->join('versions','plans.PLAN_PK = versions.VRSN_FK_plans')
-        return $rol->get();
-    }
-    
-    /**
-    * funcion para la eliminacion de un plan de la base de datos
-    * @param int $datos
-    * @return true | false
-    */
-    public function eliminar($datos){
-        if(!$this->db->delete('cicles', array('CCLS_PK' => $datos))){
-            return FALSE;
-        }
-        return TRUE;
-    }
-    
-    /**
-    * funcion para la modificacion de datos de los planes en la base de datos 
-    * @param int $datos |String $datos2
-    * @return true | false
-    */
-    public function modificarCicle($datos,$datos2){
-        $this->db->where('CCLS_PK', $datos);
-        if($this->db->update('cicles', $datos2)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-    /**
-    * funcion para agregar nuevos datos de planes en la base de datos
-    * @param int $datos
-    * @return true | false
-    */
-    public function agregarCicle($datos){
-        if(!$this->db->insert('cicles',$datos)){
+    public function agregardocumentacion($datos){
+        if(!$this->db->insert('documentation_users',$datos)){
             return false;
         }
         return true;

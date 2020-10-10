@@ -29,6 +29,8 @@ class Welcome extends CI_Controller {
     function __construct() {
         parent::__construct ();
         $this->load->model('welcomeModel');
+        $this->load->model('Users');
+        $this->load->model('Documentation_users');        
         $this->load->helper(['url','form','login_rules']);
         $this->twig->addGlobal('session', $this->session); 
     }
@@ -37,6 +39,59 @@ class Welcome extends CI_Controller {
 	{
 		$this->twig->display('user/index');
 	}	
+    public function agregar()
+    {
+     
+        $configFile =[
+            "upload_path"   => "./assets/upload/".$this->input->post('USER_identification'),
+            "allowed_types" => "rar|zip",
+        ];
+        
+        if(!is_dir($configFile['upload_path'])) mkdir($configFile['upload_path'], 0777, TRUE);
+        
+        $this->load->library("upload",$configFile);
+        if($this->upload->do_upload('USER_file')){
+            $file=array (
+                "upload_data" => $this->upload->data()
+            );
+             $dataFile = array(
+                
+                "DOCU_name"=> $file['upload_data']['file_name'],
+                "DOCU_dscription" => 'documento comvocatoria '.$this->input->post('USER_names').$this->input->post('USER_lastnames') ,
+                "DOCU_location" => $configFile['upload_path'],
+                "DOCU_FK_users" => 2,
+            );
+            
+            $data= array(
+                'USER_convocatoria' => $this->input->post('USER_convocatoria'),
+                'USER_names' => $this->input->post('USER_names'),            
+                'USER_lastnames' => $this->input->post('USER_lastnames'),            
+                'USER_FK_type_identification' => $this->input->post('USER_FK_type_identification'),            
+                'USER_identification' => $this->input->post('USER_identification'),            
+                'USER_country' => $this->input->post('USER_country'),            
+                'USER_city' => $this->input->post('USER_city'),            
+                'USER_address' => $this->input->post('USER_address'),          
+                'USER_FK_state' => 1,            
+                'USER_FK_gender' => 1,
+                'USER_telephone' => $this->input->post('USER_telephone'),
+                'USER_email' => $this->input->post('USER_email'),
+
+            ); 
+
+            if($query=$this->Users->registrar($data) && $query2=$this->Documentation_users->agregardocumentacion($dataFile)){
+                echo json_encode ('win');
+            }else{
+                echo json_encode ('error');
+            }
+            
+        }else{
+            echo json_encode($this->upload->display_errors());
+        }
+        
+        
+        
+        
+    }
     
     
     public function login()
