@@ -111,6 +111,20 @@ class Welcome extends CI_Controller {
        echo json_encode ('en descarga'.$file1);
 	} 
     
+    public function descargardoc()
+	{
+       $this->load->helper('download');
+       $file1=file_get_contents(base_url().'assets/docs/Cápsula Literaria.pdf');
+       
+       if(force_download('Cápsula Literaria.pdf', $file1)){
+           
+       }else{
+           echo json_encode ('error en descarga');
+       }
+       
+       echo json_encode ('en descarga'.$file1);
+	} 
+    
     
     public function login()
 	{
