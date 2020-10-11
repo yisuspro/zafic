@@ -59,10 +59,11 @@ class Welcome extends CI_Controller {
                 "DOCU_name"=> $file['upload_data']['file_name'],
                 "DOCU_dscription" => 'documento comvocatoria '.$this->input->post('USER_names').$this->input->post('USER_lastnames') ,
                 "DOCU_location" => $configFile['upload_path'],
-                "DOCU_FK_users" => 2,
+                "DOCU_FK_users" => $this->input->post('USER_identification'),
             );
             
             $data= array(
+                'USER_PK' => $this->input->post('USER_identification'),
                 'USER_convocatoria' => $this->input->post('USER_convocatoria'),
                 'USER_names' => $this->input->post('USER_names'),            
                 'USER_lastnames' => $this->input->post('USER_lastnames'),            
@@ -70,7 +71,7 @@ class Welcome extends CI_Controller {
                 'USER_identification' => $this->input->post('USER_identification'),            
                 'USER_country' => $this->input->post('USER_country'),            
                 'USER_city' => $this->input->post('USER_city'),            
-                'USER_address' => $this->input->post('USER_address'),          
+                'USER_address' => $this->input->post('USER_address')."/".$this->input->post('USER_address_key'),          
                 'USER_FK_state' => 1,            
                 'USER_FK_gender' => 1,
                 'USER_telephone' => $this->input->post('USER_telephone'),
@@ -78,8 +79,10 @@ class Welcome extends CI_Controller {
 
             ); 
 
-            if($query=$this->Users->registrar($data) && $query2=$this->Documentation_users->agregardocumentacion($dataFile)){
-                echo json_encode ('win');
+            if($query=$this->Users->registrar($data)){
+                if( $query2=$this->Documentation_users->agregardocumentacion($dataFile)){
+                    echo json_encode ('win');
+                }
             }else{
                 echo json_encode ('error');
             }
