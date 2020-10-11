@@ -97,6 +97,24 @@ class Welcome extends CI_Controller {
     }
     
     
+    public function descargar()
+	{
+        $this->load->helper('download');
+       if(force_download(base_url().'assets/docs/Bases de la convocatoria.pdf',null)){
+           if(force_download(base_url().'assets/docs/Cápsula Cinematográfica.pdf',null)){
+               if(force_download(base_url().'assets/docs/Cápsula Literaria.pdf',null)){
+                   echo json_encode ('descarga exitosa');
+               }
+
+           }
+       }else{
+           echo json_encode ('error en descarga');
+       }
+       
+       
+	} 
+    
+    
     public function login()
 	{
 		$this->twig->display('login');
