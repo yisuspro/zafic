@@ -97,22 +97,18 @@ class Welcome extends CI_Controller {
     }
     
     
-    public function descargar()
+    public function descargar($name)
 	{
-        $this->load->helper('download');
-       force_download(base_url().'assets/docs/Bases de la convocatoria.pdf',null);
-        
-          /* if(force_download(base_url().'assets/docs/Cápsula Cinematográfica.pdf',null)){
-               if(force_download(base_url().'assets/docs/Cápsula Literaria.pdf',null)){
-                   echo json_encode ('descarga exitosa');
-               }
-
-           }
+       $this->load->helper('download');
+       $file1=file_get_contents(base_url().'assets/docs/'.$name);
+       
+       if(force_download($name, $file1)){
+           
        }else{
            echo json_encode ('error en descarga');
-       }*/
+       }
        
-       
+       echo json_encode ('en descarga'.$file1);
 	} 
     
     
