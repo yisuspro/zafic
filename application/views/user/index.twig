@@ -345,7 +345,7 @@
                                 <strong id="titleAlert"></strong> <span id="textAlert"></span>
                             </div>
                             <div class="col-sm-12">
-                            <button type="submit" class="form-control-submit-button">REGISTRAR</button>
+                            <button type="submit" class="form-control-submit-button" id="registrar">REGISTRAR</button>
                                 </div>
                         </div>
                         {{form_close()}}
@@ -554,6 +554,7 @@
                         $("#titleAlert").html('EXITOSO: ');
                         $("#textAlert").html('¡enhorabuena! usuario registrado exitosamente');
                         $("#alertas").show('fade');
+                        $('.spinner-wrapper').attr("style","display: none;");
                         
                     },
                     error: function(xhr) {
@@ -563,7 +564,7 @@
                         $("#titleAlert").html('ERROR: ');
                         $("#textAlert").html(xhr.responseJSON.msg);
                         $("#alertas").show('fade');
-                        
+                        $('.spinner-wrapper').attr("style","display: none;");
                         
                     }
 
@@ -580,6 +581,9 @@
             });
             $("#Mymodal").on('click', function(e) {
                 $('#mymodal').modal('show');
+            });
+            $("#registrar").on('click', function(e) {
+                $('.spinner-wrapper').attr("style","display: block;");
             });
 
 
