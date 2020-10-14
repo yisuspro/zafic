@@ -41,56 +41,65 @@ class Welcome extends CI_Controller {
 	}	
     public function agregar()
     {
-     
-        $configFile =[
-            "upload_path"   => "./assets/upload/".$this->input->post('USER_identification'),
-            "allowed_types" => "rar|zip",
-        ];
-        
-        if(!is_dir($configFile['upload_path'])) mkdir($configFile['upload_path'], 0777, TRUE);
-        
-        $this->load->library("upload",$configFile);
-        if($this->upload->do_upload('USER_file')){
-            $file=array (
-                "upload_data" => $this->upload->data()
-            );
-             $dataFile = array(
-                
-                "DOCU_name"=> $file['upload_data']['file_name'],
-                "DOCU_dscription" => 'documento comvocatoria '.$this->input->post('USER_names').$this->input->post('USER_lastnames') ,
-                "DOCU_location" => $configFile['upload_path'],
-                "DOCU_FK_users" => $this->input->post('USER_identification'),
-            );
-            
-            $data= array(
-                'USER_PK' => $this->input->post('USER_identification'),
-                'USER_convocatoria' => $this->input->post('USER_convocatoria'),
-                'USER_names' => $this->input->post('USER_names'),            
-                'USER_lastnames' => $this->input->post('USER_lastnames'),            
-                'USER_FK_type_identification' => $this->input->post('USER_FK_type_identification'),            
-                'USER_identification' => $this->input->post('USER_identification'),            
-                'USER_country' => $this->input->post('USER_country'),            
-                'USER_city' => $this->input->post('USER_city'),            
-                'USER_address' => $this->input->post('USER_address')."/".$this->input->post('USER_address_key'),          
-                'USER_FK_state' => 1,            
-                'USER_FK_gender' => 1,
-                'USER_telephone' => $this->input->post('USER_telephone'),
-                'USER_email' => $this->input->post('USER_email'),
-
-            ); 
-
-            if($query=$this->Users->registrar($data)){
-                if( $query2=$this->Documentation_users->agregardocumentacion($dataFile)){
-                    echo json_encode ('win');
-                }
-            }else{
-                echo json_encode ('error');
-            }
-            
+        if($this->Users->verificarUsuario( $this->input->post('USER_identification'),)){
+            echo json_encode(array('msg'=> 'Usuario existente' ));                  //si existe envia el emnsaje de usuario existente
+            $this->output->parse_exec_vars = FALSE;
+            $this->output->set_status_header(401);           
         }else{
-            echo json_encode($this->upload->display_errors());
+            $configFile =[
+                "upload_path"   => "./assets/upload/".$this->input->post('USER_identification'),
+                "allowed_types" => "rar|zip",
+                "detect_mime"   =>  true,
+                
+            ];
+
+            if(!is_dir($configFile['upload_path'])) mkdir($configFile['upload_path'], 0777, TRUE);
+
+            $this->load->library("upload",$configFile);
+            if($this->upload->do_upload('USER_file')){
+                $file=array (
+                    "upload_data" => $this->upload->data()
+                );
+                 $dataFile = array(
+
+                    "DOCU_name"=> $file['upload_data']['file_name'],
+                    "DOCU_dscription" => 'documento comvocatoria '.$this->input->post('USER_names').$this->input->post('USER_lastnames') ,
+                    "DOCU_location" => $configFile['upload_path'],
+                    "DOCU_FK_users" => $this->input->post('USER_identification'),
+                );
+
+                $data= array(
+                    'USER_PK' => $this->input->post('USER_identification'),
+                    'USER_convocatoria' => $this->input->post('USER_convocatoria'),
+                    'USER_categoria' => $this->input->post('USER_categoria'),
+                    'USER_names' => $this->input->post('USER_names'),            
+                    'USER_lastnames' => $this->input->post('USER_lastnames'),            
+                    'USER_FK_type_identification' => $this->input->post('USER_FK_type_identification'),            
+                    'USER_identification' => $this->input->post('USER_identification'),            
+                    'USER_country' => $this->input->post('USER_country'),            
+                    'USER_city' => $this->input->post('USER_city'),            
+                    'USER_address' => $this->input->post('USER_address')."/".$this->input->post('USER_address_key'),          
+                    'USER_FK_state' => 1,            
+                    'USER_FK_gender' => 1,
+                    'USER_telephone' => $this->input->post('USER_telephone'),
+                    'USER_email' => $this->input->post('USER_email'),
+
+                ); 
+
+                if($query=$this->Users->registrar($data)){
+                    if( $query2=$this->Documentation_users->agregardocumentacion($dataFile)){
+                        echo json_encode (array('msg'=> 'Usuario registrado exitosamente' ));
+                    }
+                }else{
+                    echo json_encode (array('msg'=> 'Error al registrar usuario' ));
+                    $this->output->set_status_header(401); 
+                }
+
+            }else{
+                echo json_encode(array('msg'=> $this->upload->display_errors()));
+                $this->output->set_status_header(401); 
+            }
         }
-        
         
         
         
@@ -111,18 +120,7 @@ class Welcome extends CI_Controller {
        echo json_encode ('en descarga'.$file1);
 	} 
     
-    public function descargardoc()
-	{
-      /* $this->load->helper('download');
-       $file1=file_get_contents(base_url().'docs/Cápsula Literaria.pdf');
-        if(force_download('Cápsula Literaria.pdf', $file1)){
-           
-       }else{
-           echo json_encode ('error en descarga');
-       }*/
-       
-       echo json_encode ('en descarga');
-	} 
+    
     
     
     public function login()

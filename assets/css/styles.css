@@ -135,6 +135,9 @@ a.white {
 .turquoise {
 	color: #efaa10;
 }
+.black {
+	color: #000;
+}
 
 .btn-solid-reg {
 	display: inline-block;
@@ -759,6 +762,7 @@ input[type='checkbox'] {
     background: url(../images/header-background.png) center center no-repeat;
     background-size: cover;
 }
+
 
 .header .header-content {
 	padding-top: 8rem;
