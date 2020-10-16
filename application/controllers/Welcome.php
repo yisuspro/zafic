@@ -41,6 +41,7 @@ class Welcome extends CI_Controller {
 	}	
     public function agregar()
     {
+        
         if($this->Users->verificarUsuario( $this->input->post('USER_identification'),)){
             echo json_encode(array('msg'=> 'Usuario existente' ));                  //si existe envia el emnsaje de usuario existente
             $this->output->parse_exec_vars = FALSE;
