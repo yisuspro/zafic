@@ -46,25 +46,11 @@ class Welcome extends CI_Controller {
             $this->output->parse_exec_vars = FALSE;
             $this->output->set_status_header(401);           
         }else{
-            $configFile =[
-                "upload_path"   => "./assets/upload/".$this->input->post('USER_identification'),
-                "allowed_types" => "rar|zip",
-                "detect_mime"   =>  true,
-                
-            ];
-
-            if(!is_dir($configFile['upload_path'])) mkdir($configFile['upload_path'], 0777, TRUE);
-
-            $this->load->library("upload",$configFile);
-            if($this->upload->do_upload('USER_file')){
-                $file=array (
-                    "upload_data" => $this->upload->data()
-                );
+           
                  $dataFile = array(
-
-                    "DOCU_name"=> $file['upload_data']['file_name'],
+                     "DOCU_name"=> "google drive",
                     "DOCU_dscription" => 'documento comvocatoria '.$this->input->post('USER_names').$this->input->post('USER_lastnames') ,
-                    "DOCU_location" => $configFile['upload_path'],
+                    "DOCU_location" => $this->input->post('USER_file'),
                     "DOCU_FK_users" => $this->input->post('USER_identification'),
                 );
 
@@ -95,10 +81,7 @@ class Welcome extends CI_Controller {
                     $this->output->set_status_header(401); 
                 }
 
-            }else{
-                echo json_encode(array('msg'=> $this->upload->display_errors()));
-                $this->output->set_status_header(401); 
-            }
+           
         }
         
         
