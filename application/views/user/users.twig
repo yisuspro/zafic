@@ -1,0 +1,208 @@
+{% extends "tools/base_dashboard.twig" %}
+{% block title %}perfil{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<!-- modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="mymodal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title turquoise" align="center">¡ENHORABUENA!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h6>NOMBRE:</h6>
+                    <div class="" name="nombre" id="nombre"></div>
+                    <h6>APELLIDOS:</h6>
+                    <div class="" name="apellido" id="apellido"></div>
+                    <h6>CORREO ELECRONICO:</h6>
+                    <div class="" name="correo" id="correo"></div>
+                    <h6>TELEFONO:</h6>
+                    <div class="" name="telefono" id="telefono"></div>
+                    <h6>CUIDAD:</h6>
+                    <div class="" name="ciudad" id="ciudad"></div>
+                    <h6>PAIS:</h6>
+                    <div class="" name="pais" id="pais"></div>
+                    <h6>LINK DEL PROYECTO:</h6>
+                    <div class="" name="proyecto" id="proyecto"></div>
+                    <h6>LINK DE LA DOCUMENTACION</h6>
+                    <div class="" name="documentos" id="documentos"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="form-control-submit-button" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of modal <button class="Mymodal" id="Mymodal"> modal</button> -->
+
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Convocatorias enviadas</h4>
+    </div>
+    <div class="card-body">
+        <div id='wrap'>
+            <div class="table-responsive ">
+                    <div class="datagrid">
+                        <table id="sample_1" class="display" style="width:100% ;font-size: small;">
+                            <thead class="text-primary">
+                                <th>
+                                    ID PERSONA
+                                </th>
+                                <th>
+                                    NOMBRE
+                                </th>
+                                <th>
+                                    APELLIDO
+                                </th>
+                                <th>
+                                    CONVOCATORIA
+                                </th>
+                                <th>
+                                    CAPSULA
+                                </th>
+                                <th>
+                                    ACCIONES
+                                </th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block script %}
+ <script src="{{base_url()}}assets/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+<script>
+    $(document).ready(function() {
+        var dt;
+        dt = $('#sample_1');
+        dt.DataTable({
+            lengthMenu: [
+                [5, 10, 25, 50, -1],
+                [5, 10, 25, 50, "Todo"],
+            ],
+            "order": [
+                [3, "asc"]
+            ],
+            "ajax": {
+                url: "{{ base_url() }}User/listarUsuarios",
+                type: 'GET'
+            },
+            "scrollX": true,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'print',
+                    className: 'btn  btn-icon-only  t-print',
+                    text: '<i class="fa fa-print">print</i>'
+                },
+                {
+                    extend: 'copy',
+                    className: 'btn  btn-icon-only  t-copy',
+                    text: '<i class="fa fa-files-o">copy</i>'
+                },
+                {
+                    extend: 'pdf',
+                    className: 'btn  btn-icon-only  t-pdf',
+                    text: '<i class="fa fa-file-pdf-o">pdf</i>',
+                },
+                {
+                    extend: 'excel',
+                    className: 'btn  btn-icon-only  t-excel',
+                    text: '<i class="fa fa-file-excel-o">excel</i>',
+                },
+                {
+                    extend: 'csv',
+                    className: 'btn  btn-icon-only  t-csv',
+                    text: '<i class="fa fa-file-text-o">csv </i>',
+                },
+
+            ],
+            columns: [{
+                    data: 'USER_PK'
+                },
+                {
+                    data: 'USER_names'
+                },
+                {
+                    data: 'USER_lastnames'
+                },
+                {
+                    data: 'USER_convocatoria',
+                },
+                {
+                    data: 'USER_categoria',
+                },
+                       {
+                    "defaultContent": "<button id='informacion' name='informacion' title='Ver informacion' type='button' class='form btn btn-success btn-xs history'> <span class='fas fa-plus'></span></button>"
+                },
+            ],
+            pageLength: 10,
+            rowCallback: function(row, data) {
+                if (data['USER_convocatoria'] == "0") {
+                    $($(row).find("td")[3]).html("ninguna");
+                } else if(data['USER_convocatoria'] == "1"){
+                    $($(row).find("td")[3]).html("cine");
+                }else if(data['USER_convocatoria'] == "2"){
+                    $($(row).find("td")[3]).html("literatura");
+                }
+                if (data['USER_categoria'] == "0") {
+                    $($(row).find("td")[4]).html("ninguna");
+                } else if(data['USER_categoria'] == "1"){
+                    $($(row).find("td")[4]).html("Ficción");
+                }else if(data['USER_categoria'] == "2"){
+                    $($(row).find("td")[4]).html("Documental");
+                }else if(data['USER_categoria'] == "3"){
+                    $($(row).find("td")[4]).html("Experimental");
+                }else if(data['USER_categoria'] == "4"){
+                    $($(row).find("td")[4]).html("Videoclip");
+                }else if(data['USER_categoria'] == "5"){
+                    $($(row).find("td")[4]).html("Publicitaria");
+                }else if(data['USER_categoria'] == "6"){
+                    $($(row).find("td")[4]).html("Cuentos - Guiones");
+                }
+            },
+       
+            
+        });
+        
+        dt.on('click', '.history', function(e) {
+            e.preventDefault();
+            $tr = $(this).closest('tr');
+            var O = dt.DataTable().row($tr).data(); 
+             $.ajax({
+                url: '{{ base_url() }}User/verInfoUsuario/' + O.USER_PK,
+                type: 'GET',
+                success: function(data, xhr) {
+                    $("#nombre").html(O.USER_names);
+                    $("#apellido").html(O.USER_lastnames);
+                    $("#correo").html(O.USER_email);
+                    $("#telefono").html(O.USER_telephone);
+                    $("#ciudad").html(O.USER_city);
+                    $("#pais").html(O.USER_country);
+                    $("#proyecto").html('<a href="'+O.USER_address+'" target="_blank" class="turquoise">'+O.USER_address+'</a>');
+                    $("#documentos").html('<a href="'+data.replace(/['"]+/g, '')+'" target="_blank" class="turquoise">'+data.replace(/['"]+/g, '')+'</a>');
+                    $('#mymodal').modal('show');
+                },
+                error: function(xhr) {
+
+                }
+
+            });
+        });
+
+
+    });
+
+</script>
+
+    
+{% endblock %}

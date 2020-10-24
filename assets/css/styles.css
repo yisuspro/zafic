@@ -762,7 +762,10 @@ input[type='checkbox'] {
     background: url(../images/header-background.png) center center no-repeat;
     background-size: cover;
 }
-
+.people {
+    width: 400px;
+    height: 200px;
+}
 
 .header .header-content {
 	padding-top: 8rem;

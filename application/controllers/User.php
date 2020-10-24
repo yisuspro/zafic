@@ -28,6 +28,8 @@ class User extends CI_Controller {
     */
     function __construct() {
         parent::__construct ();
+        $this->load->model('Users');
+        $this->load->model('Documentation_users');  
         $this->twig->addGlobal('session', $this->session); 
     }
     
@@ -35,12 +37,30 @@ class User extends CI_Controller {
 	{
 		$this->twig->display('user/profile');
 	}	
-    public function calendar()
+    public function users()
 	{
-		$this->twig->display('user/calendar');
+		$this->twig->display('user/users');
 	}	
-    public function pruebas()
+     public function listarUsuarios(){
+        $draw   = intval($this->input->get("draw"));             //trae las varibles draw, start, length para la creacion de la tabla
+        $start  = intval($this->input->get("start"));
+        $length = intval($this->input->get("length"));
+        $data =$this->Users->listar();                       //utiliza el metodo listar() del modelo plan() para traer los datos de todos los planes 
+        $output = array(                                    //creacion del vector de salida
+            "draw" => $draw,                                //envio la variable de dibujo de la tabla                    
+            "recordsTotal" =>$data->num_rows(),             //envia el numero de filas  para saber cuantos usuarios son en total
+            "recordsFiltered" => $data->num_rows(),         //envio el numero de filas para el calculo de la paginacion de la tabla
+            "data" => $data->result_array()                                 //envia todos los datos de la tabla
+        );
+        echo json_encode($output);                          //envio del vector de salida con los parametros correspondientes
+        exit;    
+    }
+    
+    
+    public function verInfoUsuario($id)
 	{
-		$this->twig->display('user/pruebas');
-	}	
+       foreach ( $this->Documentation_users->listar($id)->result_object() as $doc){
+            echo json_encode($doc->DOCU_location);
+       }
+    }	
 }

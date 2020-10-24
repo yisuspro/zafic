@@ -65,7 +65,7 @@ class Welcome extends CI_Controller {
                     'USER_identification' => $this->input->post('USER_identification'),            
                     'USER_country' => $this->input->post('USER_country'),            
                     'USER_city' => $this->input->post('USER_city'),            
-                    'USER_address' => $this->input->post('USER_address')."/".$this->input->post('USER_address_key'),          
+                    'USER_address' => $this->input->post('USER_address')." key:".$this->input->post('USER_address_key'),          
                     'USER_FK_state' => 1,            
                     'USER_FK_gender' => 1,
                     'USER_telephone' => $this->input->post('USER_telephone'),
