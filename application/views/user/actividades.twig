@@ -1,0 +1,344 @@
+{% extends "tools/base_dashboard.twig" %}
+{% block title %}actividades{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<!-- modal -->
+<div class="modal" tabindex="-1" role="dialog" id="modalAgregar">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title turquoise" align="center">¡ENHORABUENA!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{form_open(base_url('Welcome/validate'),'id="frm_agregar_actividad"')}}
+            <div class="modal-body">
+                <div class="form-group">
+                    <h6><label>TITULO:</label></h6>
+                    <input type="text" name="ATVT_title" id="ATVT_title" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <h6><label>DESCRIPCION:</label></h6>
+                    <textarea type="text" name="ATVT_description" id="ATVT_description" class="form-control" required></textarea>
+                </div>
+                <div class="form-group">
+                    <h6><label>FECHA:</label></h6>
+                    <input type="datetime-local" name="ATVT_date" id="ATVT_date" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <h6><label>DIA:</label></h6>
+                    <select class="form-group" id="ATVT_day" name="ATVT_day">
+                        <option value="LUNES">LUNES</option>
+                        <option value="MARTES">MARTES</option>
+                        <option value="MIERCOLES">MIERCOLES</option>
+                        <option value="JUEVES">JUEVES</option>
+                        <option value="VIERNES">VIERNES</option>
+                        <option value="SABADO">SABADO</option>
+                        <option value="DOMINGO">DOMINGO</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <h6><label>LINK DEL EVENTO:</label></h6>
+                    <input type="text" name="ATVT_link" id="ATVT_link" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <h6><label>INVITADOS DEL EVENTO:</label></h6>
+                    <input type="text" name="ATVT_invited" id="ATVT_invited" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <h6><label>OBSERVACIONES:</label></h6>
+                    <input type="text" name="ATVT_otros" id="ATVT_otros" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <h6><label>IMAGEN DEL EVENTO:</label></h6>
+                    <input type="file" name="ATVT_image" id="ATVT_image" required>
+                </div>
+                <div class="form-group">
+                    <br>
+                    <img id="imagen" src="" width="50%" style="display:none;" />
+                    <br>
+                </div>
+            </div>
+            <div class="modal-footer">
+                 <button type="submit" class="form-control-submit-button" id="registrar">REGISTRAR</button>
+                <button type="button"  data-dismiss="modal">Cerrar</button>
+            </div>
+            {{form_close()}}
+        </div>
+    </div>
+</div>
+<!-- modal -->
+<div class="modal" tabindex="-1" role="dialog" id="mymodal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title turquoise" align="center">¡ENHORABUENA!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6>ID ACTIVIDAD:</h6>
+                <div class="" name="id" id="id"></div>
+                <h6>TITULO:</h6>
+                <div class="" name="titulo" id="titulo"></div>
+                <h6>DESCRIPCION:</h6>
+                <div class="" name="descripcion" id="descripcion"></div>
+                <h6>FECHA:</h6>
+                <div class="" name="fecha" id="fecha"></div>
+                <h6>DIA:</h6>
+                <div class="" name="dia" id="dia"></div>
+                <h6>LINK:</h6>
+                <div class="" name="link" id="link"></div>
+                <h6>OBSERVACIONES:</h6>
+                <div class="" name="observaciones" id="observaciones"></div>
+                <h6>INVITADOS:</h6>
+                <div class="" name="invitados" id="invitados"></div>
+                 <h6>IMAGEN PUBLICITARIA:</h6>
+                <div class="" name="prueba" id="prueba"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="form-control-submit-button" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of modal <button class="Mymodal" id="Mymodal"> modal</button> -->
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Convocatorias enviadas</h4>
+    </div>
+
+    <div class="card-body">
+        <div id='wrap'>
+            <div class="col-sm-12"><button id='agregar' name='agregar' title='Ver informacion' type='button' class='form btn btn-info btn-xs agregar'>AGREGAR</button></div>
+            <br>
+            <div class="col-sm-12">
+                <div class="table-responsive ">
+                    <div class="datagrid">
+                        <table id="sample_1" class="display" style="width:100% ;font-size: small;">
+                            <thead class="text-primary">
+                                <th>
+                                    ID ACTIVIDAD
+                                </th>
+                                <th>
+                                    TITULO
+                                </th>
+                                <th>
+                                    DIA PROGRAMADO
+                                </th>
+                                <th>
+                                    OBSERVACIONES
+                                </th>
+                                <th>
+                                    ESTADO
+                                </th>
+                                <th>
+                                    ACCIONES
+                                </th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}
+{% block script %}
+<script src="{{base_url()}}assets/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+<script>
+    $(document).ready(function() {
+        var dt;
+        dt = $('#sample_1');
+        dt.DataTable({
+            lengthMenu: [
+                [5, 10, 25, 50, -1],
+                [5, 10, 25, 50, "Todo"],
+            ],
+            "order": [
+                [3, "asc"]
+            ],
+            "ajax": {
+                url: "{{ base_url() }}Activity/listar",
+                type: 'GET'
+            },
+            "scrollX": true,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'print',
+                    className: 'btn  btn-icon-only  t-print',
+                    text: '<i class="fa fa-print">print</i>'
+                },
+                {
+                    extend: 'copy',
+                    className: 'btn  btn-icon-only  t-copy',
+                    text: '<i class="fa fa-files-o">copy</i>'
+                },
+                {
+                    extend: 'pdf',
+                    className: 'btn  btn-icon-only  t-pdf',
+                    text: '<i class="fa fa-file-pdf-o">pdf</i>',
+                },
+                {
+                    extend: 'excel',
+                    className: 'btn  btn-icon-only  t-excel',
+                    text: '<i class="fa fa-file-excel-o">excel</i>',
+                },
+                {
+                    extend: 'csv',
+                    className: 'btn  btn-icon-only  t-csv',
+                    text: '<i class="fa fa-file-text-o">csv </i>',
+                },
+
+            ],
+            columns: [{
+                    data: 'ATVT_PK'
+                },
+                {
+                    data: 'ATVT_title'
+                },
+                {
+                    data: 'ATVT_date'
+                },
+                {
+                    data: 'ATVT_otros',
+                },
+                {
+                    data: 'ATVT_state',
+                },
+                {
+                    "defaultContent": "<button id='informacion' name='informacion' title='Ver informacion' type='button' class='form btn btn-info btn-xs history'>VER</button><button id='activar' name='activar' title='activar publicacion' type='button' class='form btn btn-success btn-xs'>PUBLICAR</button><button id='eliminar' name='eliminar' title='eliminar' type='button' class='form btn btn-danger btn-xs'>ELIMINAR</button>"
+                },
+            ],
+            pageLength: 10,
+            rowCallback: function(row, data) {
+                if (data['ATVT_state'] == "0") {
+                    $($(row).find("td")[4]).html("INACTIVA");
+                } else if (data['ATVT_state'] == "1") {
+                    $($(row).find("td")[4]).html("ACTIVA");
+                } else if (data['ATVT_state'] == "2") {
+                    $($(row).find("td")[4]).html("PUBLICA");
+                }
+
+            },
+        });
+        dt.on('click', '.history', function(e) {
+            e.preventDefault();
+            $tr = $(this).closest('tr');
+            var O = dt.DataTable().row($tr).data();
+            $("#id").html(O.ATVT_PK);
+            $("#titulo").html(O.ATVT_title);
+            $("#descripcion").html(O.ATVT_description);
+            $("#fecha").html(O.ATVT_date);
+            $("#dia").html(O.ATVT_day);
+            $("#link").html('<a href="' + O.ATVT_link + '" target="_blank" class="turquoise">' + O.ATVT_link + '</a>');
+            $("#observaciones").html(O.ATVT_otros);
+            $("#invitados").html(O.ATVT_invited);
+            $("#prueba").html('<img class="img-fluid" src="{{ base_url() }}' + O.ATVT_image + '">');
+            $('#mymodal').modal('show');
+
+        });
+
+        dt.on('click', '#activar', function(e) {
+            e.preventDefault();
+            $tr = $(this).closest('tr');
+            var O = dt.DataTable().row($tr).data();
+            var r = confirm("Seguro deseas cambiar de estado la actividad No." + O.ATVT_PK);
+            if (r == true) {
+                $.ajax({
+                    url: '{{ base_url() }}Activity/publicar/' + O.ATVT_PK,
+                    type: 'GET',
+                    success: function(data, xhr) {
+                        $("#sample_1").DataTable().ajax.reload();
+                        alert("cambio realizado");
+                    },
+                    error: function(xhr) {
+                        alert("cambio fallido");
+                    }
+                });
+            } else {
+                alert("cambio rechazado");
+            }
+
+        });
+
+        $("#agregar").on('click', function(e) {
+            $('#modalAgregar').modal('show');
+        });
+
+        $('#ATVT_image').on('change', function() {
+            var rute = URL.createObjectURL(event.target.files[0]);
+            $("#imagen").fadeIn("fast").attr('src', rute);
+
+        });
+
+         $("#frm_agregar_actividad").submit(function(event) {
+                event.preventDefault();
+                var formData = new FormData(document.getElementById("frm_agregar_actividad"));
+                $.ajax({
+                    url: '{{ base_url() }}Activity/agregar',
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function(data, xhr, response) {
+                        $("#frm_agregar_actividad")[0].reset();
+                        $("#sample_1").DataTable().ajax.reload();
+                        $('#modalAgregar').modal('hide');
+                        
+
+                    },
+                    error: function(xhr) {
+                        alert("error al crear actividad");
+                    }
+
+                });
+            });
+        
+        
+        dt.on('click', '#eliminar', function(e) {
+            e.preventDefault();
+            $tr = $(this).closest('tr');
+            var O = dt.DataTable().row($tr).data();
+            var r = confirm("Seguro deseas eliminar de estado la actividad No." + O.ATVT_PK);
+            if (r == true) {
+                $.ajax({
+                    url: '{{ base_url() }}Activity/eliminar/' + O.ATVT_PK,
+                    type: 'GET',
+                    success: function(data, xhr) {
+                        $("#sample_1").DataTable().ajax.reload();
+                        alert("cambio realizado");
+                    },
+                    error: function(xhr) {
+                        alert("cambio fallido");
+                    }
+                });
+            } else {
+                alert("cambio rechazado");
+            }
+
+        });
+        
+        
+
+
+
+
+    });
+
+</script>
+{% endblock %}

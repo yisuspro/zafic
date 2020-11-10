@@ -3,6 +3,12 @@
 application/cache/*
 !application/cache/index.html
 
+.htaccess
+application/config/*
+!application/config/config.php
+!application/config/database.php
+assets/upload/*
+
 application/logs/*
 !application/logs/index.html
 
@@ -30,7 +36,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 
-.htaccess
 application/config/config.php
 application/config/database.php
-assets/upload/*
+
