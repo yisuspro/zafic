@@ -59,7 +59,9 @@ body{
 .p-large {
 	font: 400 1rem/1.5rem "Raleway", sans-serif;
 }
-
+.aliados{
+    width: 100px;
+}
 .p-small {
 	font: 400 0.75rem/1.25rem "Raleway", sans-serif;
 }
