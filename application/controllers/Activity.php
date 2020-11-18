@@ -86,7 +86,8 @@ class Activity extends CI_Controller {
                 'ATVT_invited' => $this->input->post('ATVT_invited'),            
                 'ATVT_otros' => $this->input->post('ATVT_otros'),            
                 'ATVT_date' => $this->input->post('ATVT_date'),            
-                'ATVT_day' => $this->input->post('ATVT_day'),          
+                'ATVT_day' => $this->input->post('ATVT_day'),         
+                'ATVT_categoria' => $this->input->post('ATVT_categoria'),         
                 'ATVT_image' => "assets/upload/".$this->input->post('ATVT_title')."/".$configFile['file_name'],
             ); 
 

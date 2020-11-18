@@ -19,6 +19,17 @@
                     <h6><label>TITULO:</label></h6>
                     <input type="text" name="ATVT_title" id="ATVT_title" class="form-control" required>
                 </div>
+                 <div class="form-group">
+                    <h6><label>DIA:</label></h6>
+                    <select class="form-group" id="ATVT_categoria" name="ATVT_categoria">
+                        <option value="0">seleccione una opcion</option>
+                        <option value="1">Ficción</option>
+                        <option value="2">Documental</option>
+                        <option value="3">Experimental</option>
+                        <option value="4">Videoclip</option>
+                        <option value="5">Publicitaria</option>
+                     </select>
+                </div>
                 <div class="form-group">
                     <h6><label>DESCRIPCION:</label></h6>
                     <textarea type="text" name="ATVT_description" id="ATVT_description" class="form-control" required></textarea>
@@ -87,6 +98,8 @@
                 <div class="" name="id" id="id"></div>
                 <h6>TITULO:</h6>
                 <div class="" name="titulo" id="titulo"></div>
+                <h6>CATEGORIA:</h6>
+                <div class="" name="categoria" id="categoria"></div>
                 <h6>DESCRIPCION:</h6>
                 <div class="" name="descripcion" id="descripcion"></div>
                 <h6>FECHA:</h6>
@@ -246,6 +259,7 @@
             $("#link").html('<a href="' + O.ATVT_link + '" target="_blank" class="turquoise">' + O.ATVT_link + '</a>');
             $("#observaciones").html(O.ATVT_otros);
             $("#invitados").html(O.ATVT_invited);
+            $("#categoria").html(O.ATVT_categoria);
             $("#prueba").html('<img class="img-fluid" src="{{ base_url() }}' + O.ATVT_image + '">');
             $('#mymodal').modal('show');
 
