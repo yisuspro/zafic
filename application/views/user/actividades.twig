@@ -3,6 +3,8 @@
 {% block head %}
 {% endblock %}
 {% block content %}
+ 
+
 <!-- modal -->
 <div class="modal" tabindex="-1" role="dialog" id="modalAgregar">
     <div class="modal-dialog" role="document">
@@ -20,7 +22,7 @@
                     <input type="text" name="ATVT_title" id="ATVT_title" class="form-control" required>
                 </div>
                  <div class="form-group">
-                    <h6><label>DIA:</label></h6>
+                    <h6><label>CATEGORIA:</label></h6>
                     <select class="form-group" id="ATVT_categoria" name="ATVT_categoria">
                         <option value="0">seleccione una opcion</option>
                         <option value="1">Ficción</option>
@@ -127,7 +129,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Convocatorias enviadas</h4>
+        <h4 class="card-title">Actividades Programadas</h4>
     </div>
 
     <div class="card-body">
@@ -173,6 +175,7 @@
 <script src="{{base_url()}}assets/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
 <script>
     $(document).ready(function() {
+        
         var dt;
         dt = $('#sample_1');
         dt.DataTable({
@@ -266,20 +269,24 @@
         });
 
         dt.on('click', '#activar', function(e) {
+            
             e.preventDefault();
             $tr = $(this).closest('tr');
             var O = dt.DataTable().row($tr).data();
             var r = confirm("Seguro deseas cambiar de estado la actividad No." + O.ATVT_PK);
             if (r == true) {
+                $('.spinner-wrapper').attr("style", "display: block;");
                 $.ajax({
                     url: '{{ base_url() }}Activity/publicar/' + O.ATVT_PK,
                     type: 'GET',
                     success: function(data, xhr) {
                         $("#sample_1").DataTable().ajax.reload();
                         alert("cambio realizado");
+                        $('.spinner-wrapper').attr("style", "display: none;");
                     },
                     error: function(xhr) {
                         alert("cambio fallido");
+                        $('.spinner-wrapper').attr("style", "display: none;");
                     }
                 });
             } else {
@@ -301,6 +308,7 @@
          $("#frm_agregar_actividad").submit(function(event) {
                 event.preventDefault();
                 var formData = new FormData(document.getElementById("frm_agregar_actividad"));
+                $('.spinner-wrapper').attr("style", "display: block;");
                 $.ajax({
                     url: '{{ base_url() }}Activity/agregar',
                     type: 'POST',
@@ -313,11 +321,12 @@
                         $("#frm_agregar_actividad")[0].reset();
                         $("#sample_1").DataTable().ajax.reload();
                         $('#modalAgregar').modal('hide');
-                        
+                        $('.spinner-wrapper').attr("style", "display: none;");
 
                     },
                     error: function(xhr) {
                         alert("error al crear actividad");
+                        $('.spinner-wrapper').attr("style", "display: none;");
                     }
 
                 });
@@ -330,15 +339,18 @@
             var O = dt.DataTable().row($tr).data();
             var r = confirm("Seguro deseas eliminar de estado la actividad No." + O.ATVT_PK);
             if (r == true) {
+                $('.spinner-wrapper').attr("style", "display: block;");
                 $.ajax({
                     url: '{{ base_url() }}Activity/eliminar/' + O.ATVT_PK,
                     type: 'GET',
                     success: function(data, xhr) {
                         $("#sample_1").DataTable().ajax.reload();
                         alert("cambio realizado");
+                        $('.spinner-wrapper').attr("style", "display: none;");
                     },
                     error: function(xhr) {
                         alert("cambio fallido");
+                        $('.spinner-wrapper').attr("style", "display: none;");
                     }
                 });
             } else {

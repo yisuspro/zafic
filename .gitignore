@@ -39,3 +39,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 application/config/config.php
 application/config/database.php
 
+
+assets/images/customer-logo-5.png
