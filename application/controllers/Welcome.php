@@ -30,14 +30,27 @@ class Welcome extends CI_Controller {
         parent::__construct ();
         $this->load->model('welcomeModel');
         $this->load->model('Users');
-        $this->load->model('Documentation_users');        
+        $this->load->model('Documentation_users');  
+        $this->load->model('Activities');
         $this->load->helper(['url','form','login_rules']);
         $this->twig->addGlobal('session', $this->session); 
     }
     
 	public function index()
 	{
-		$this->twig->display('user/index');
+        $ficcion =$this->Activities->listarVideos(1);
+        $documental =$this->Activities->listarVideos(2);
+        $experimental =$this->Activities->listarVideos(3);
+        $videoclip =$this->Activities->listarVideos(4);
+        $publicitaria =$this->Activities->listarVideos(5);
+        $this->twig->display('user/index',array(
+            'ficcion' => $ficcion,
+            'documental' => $documental,
+            'experimental' => $experimental,
+            'videoclip' => $videoclip,
+            'publicitaria' => $publicitaria,
+        ));
+        
 	}	
     public function agregar()
     {
@@ -49,7 +62,7 @@ class Welcome extends CI_Controller {
         }else{
            
                  $dataFile = array(
-                     "DOCU_name"=> "google drive",
+                    "DOCU_name"=> "google drive",
                     "DOCU_dscription" => 'documento comvocatoria '.$this->input->post('USER_names').$this->input->post('USER_lastnames') ,
                     "DOCU_location" => $this->input->post('USER_file'),
                     "DOCU_FK_users" => $this->input->post('USER_identification'),

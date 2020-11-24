@@ -79,4 +79,14 @@ class Activities extends CI_Model {
         return true;
     }
     
+    /**
+    * funcion para el registro de usuario 
+    * @param String $datos
+    * @return true | false
+    */
+    public function listarVideos($data){
+       $actividades = $this->db->select('*')->from('activities')->where("ATVT_categoria",$data)->where("ATVT_state","2")->where("ATVT_day","LUNES");
+        return $actividades->get()->result();
+    }
+    
 }
