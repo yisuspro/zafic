@@ -169,8 +169,6 @@
 
 
     <!-- Video -->
-
-
     <div class="basic-3">
         <div class="container">
             <div class="row">
@@ -187,6 +185,7 @@
             <div class="row">
                 {% for fic in ficcion %}
                 <div class="col-lg-3">
+                    
                     <!-- Video Preview -->
                     <div class="image-container">
                         <div class="video-wrapper">
@@ -320,6 +319,41 @@
     <!-- end of video -->
 
 
+    <div class="basic-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="turquoise">CAPSULA LITERARIA </h2>
+                </div> <!-- end of col -->
+            </div>
+            {% if literal %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="turquoise">Cuentos - Guiones:</h3>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                {% for lit in literal %}
+                <div class="col-lg-6">
+                    <!-- Video Preview -->
+                    <div class="image-container">
+                        <div class="video-wrapper">
+                            <img class="img-fluid" src="{{base_url()}}{{ lit.ATVT_image }}" alt="alternative">
+                        </div> <!-- end of video-wrapper -->
+                    </div> <!-- end of image-container -->
+                    <h4>{{ lit.ATVT_title }} </h4>
+                    <h5>{{ lit.ATVT_description }}</h5>
+                    <h6>{{ lit.ATVT_invited }}</h6>
+                    <!-- end of video preview -->
+                </div> <!-- end of col -->
+                {% endfor %}
+            </div> <!-- end of row -->
+            {% endif %}
+    </div>
+    
+    
+    
+    
     <!-- About -->
     <div id="about" class="basic-4">
         <div class="container">

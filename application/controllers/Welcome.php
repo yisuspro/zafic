@@ -43,12 +43,14 @@ class Welcome extends CI_Controller {
         $experimental =$this->Activities->listarVideos(3);
         $videoclip =$this->Activities->listarVideos(4);
         $publicitaria =$this->Activities->listarVideos(5);
+        $literal =$this->Activities->listarVideos(6);
         $this->twig->display('user/index',array(
             'ficcion' => $ficcion,
             'documental' => $documental,
             'experimental' => $experimental,
             'videoclip' => $videoclip,
             'publicitaria' => $publicitaria,
+            'literal' => $literal,
         ));
         
 	}	
