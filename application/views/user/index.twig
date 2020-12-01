@@ -184,13 +184,13 @@
             </div> <!-- end of row -->
             <div class="row">
                 {% for fic in ficcion %}
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     
                     <!-- Video Preview -->
                     <div class="image-container">
                         <div class="video-wrapper">
                             <a class="popup-youtube" href="{{ fic.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid" src="{{base_url()}}{{ fic.ATVT_image }}" alt="alternative">
+                                <img class="img-fluid people" src="{{base_url()}}{{ fic.ATVT_image }}" alt="alternative">
                                 <span class="video-play-button">
                                     <span></span>
                                 </span>
@@ -213,12 +213,12 @@
             </div> <!-- end of row -->
             <div class="row">
                 {% for doc in documental %}
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <!-- Video Preview -->
                     <div class="image-container">
                         <div class="video-wrapper">
                             <a class="popup-youtube" href="{{ doc.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid" src="{{base_url()}}{{ doc.ATVT_image }}" alt="alternative">
+                                <img class="img-fluid people" src="{{base_url()}}{{ doc.ATVT_image }}" alt="alternative">
                                 <span class="video-play-button">
                                     <span></span>
                                 </span>
@@ -242,12 +242,12 @@
            
             <div class="row">
                 {% for exp in experimental %}
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <!-- Video Preview -->
                     <div class="image-container">
                         <div class="video-wrapper">
                             <a class="popup-youtube" href="{{ exp.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid" src="{{base_url()}}{{ exp.ATVT_image }}" alt="alternative">
+                                <img class="img-fluid people" src="{{base_url()}}{{ exp.ATVT_image }}" alt="alternative">
                                 <span class="video-play-button">
                                     <span></span>
                                 </span>
@@ -265,12 +265,12 @@
             {% if videoclip %}
            <div class="row">
                 {% for vid in videoclip %}
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <!-- Video Preview -->
                     <div class="image-container">
                         <div class="video-wrapper">
                             <a class="popup-youtube" href="{{ vid.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid" src="{{base_url()}}{{ vid.ATVT_image }}" alt="alternative">
+                                <img class="img-fluid people" src="{{base_url()}}{{ vid.ATVT_image }}" alt="alternative">
                                 <span class="video-play-button">
                                     <span></span>
                                 </span>
@@ -293,12 +293,12 @@
             </div> <!-- end of row -->
             <div class="row">
                 {% for pub in publicitaria %}
-                <div class="col-lg-3">
+                <div class="col-lg-2">
                     <!-- Video Preview -->
                     <div class="image-container">
                         <div class="video-wrapper">
                             <a class="popup-youtube" href="{{ pub.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid" src="{{base_url()}}{{ pub.ATVT_image }}" alt="alternative">
+                                <img class="img-fluid people" src="{{base_url()}}{{ pub.ATVT_image }}" alt="alternative">
                                 <span class="video-play-button">
                                     <span></span>
                                 </span>
@@ -349,6 +349,7 @@
                 {% endfor %}
             </div> <!-- end of row -->
             {% endif %}
+    </div>
     </div>
     
     
