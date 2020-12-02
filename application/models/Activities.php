@@ -36,7 +36,7 @@ class Activities extends CI_Model {
     * @return row() | false
     */
     public function listardos(){
-        $actividades = $this->db->select('*')->from('activities')->where('ATVT_state',2)->where('ATVT_categoria !=',7);
+        $actividades = $this->db->select('*')->from('activities')->where('ATVT_state',2)->where('ATVT_categoria !=',7)->where('ATVT_categoria !=',0);
         return $actividades->get();
     }
     /**
