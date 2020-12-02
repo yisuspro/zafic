@@ -51,7 +51,11 @@ html {
     width: 100%;
 	height: 100%;
 }
-
+td{
+    color: #fff; 
+	font: 400 0.875rem/1.375rem "Raleway", sans-serif;
+    background-color: black;
+}
 body{
 	color: #fff; 
 	font: 400 0.875rem/1.375rem "Raleway", sans-serif;

@@ -50,6 +50,20 @@ class Activity extends CI_Controller {
         echo json_encode($output);                          //envio del vector de salida con los parametros correspondientes
         exit; 
 	}
+     public function listardos(){
+        $draw   = intval($this->input->get("draw"));             //trae las varibles draw, start, length para la creacion de la tabla
+        $start  = intval($this->input->get("start"));
+        $length = intval($this->input->get("length"));
+        $data =$this->Activities->listardos();                       //utiliza el metodo listar() del modelo plan() para traer los datos de todos los planes 
+        $output = array(                                    //creacion del vector de salida
+            "draw" => $draw,                                //envio la variable de dibujo de la tabla                    
+            "recordsTotal" =>$data->num_rows(),             //envia el numero de filas  para saber cuantos usuarios son en total
+            "recordsFiltered" => $data->num_rows(),         //envio el numero de filas para el calculo de la paginacion de la tabla
+            "data" => $data->result_array()                                 //envia todos los datos de la tabla
+        );
+        echo json_encode($output);                          //envio del vector de salida con los parametros correspondientes
+        exit; 
+	}
     
      public function publicar($id){
        /*if($this->Activities->cambioEstado($id)){

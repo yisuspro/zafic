@@ -22,14 +22,12 @@
     <title>Zafic Festival</title>
 
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
     <link href="{{base_url()}}assets/css/bootstrap.css" rel="stylesheet">
     <link href="{{base_url()}}assets/css/fontawesome-all.css" rel="stylesheet">
     <link href="{{base_url()}}assets/css/swiper.css" rel="stylesheet">
     <link href="{{base_url()}}assets/css/magnific-popup.css" rel="stylesheet">
     <link href="{{base_url()}}assets/css/styles.css" rel="stylesheet">
-    <link href="{{base_url()}}assets/css/basic.css" rel="stylesheet">
-    <link href="{{base_url()}}assets/css/dropzone.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 
 
 
@@ -111,6 +109,9 @@
 
                         </script>
                     </div> <!-- end of col -->
+                    <br>
+                    <br>
+                    <br>
                     <div class="col-lg-12">
                         <iframe frameborder="0" scrolling="no" id="chat_embed" src="https://www.twitch.tv/embed/zaficfestival/chat?parent=zaficfestival.com" height="300" width="100%">
                         </iframe>
@@ -123,52 +124,11 @@
     <!-- end of header -->
 
 
-    <!-- Customers -->
-    <div class="slider-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="turquoise">NUESTROS ALIADOS</h3>
-
-                    <!-- Image Slider -->
-                    <div class="slider-container">
-                        <div class="swiper-container image-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="image-container">
-                                        <img class="img-responsive aliados" src="{{base_url()}}assets/images/crea_labs.png" alt="alternative">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="image-container">
-                                        <img class="img-responsive aliados" src="{{base_url()}}assets/images/chikara.png" alt="alternative">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="image-container">
-                                        <img class="img-responsive aliados" src="{{base_url()}}assets/images/customer-logo-3.png" alt="alternative">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="image-container">
-                                        <img class="img-responsive aliados" src="{{base_url()}}assets/images/customer-logo-4.png" alt="alternative">
-                                    </div>
-                                </div>
-
-                            </div> <!-- end of swiper-wrapper -->
-                        </div> <!-- end of swiper container -->
-                    </div> <!-- end of slider-container -->
-                    <!-- end of image slider -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of slider-1 -->
-    <!-- end of customers -->
 
 
 
-    <!-- Video -->
+
+    <!-- lista -->
     <div class="basic-3">
         <div class="container">
             <div class="row">
@@ -176,185 +136,74 @@
                     <h2 class="turquoise">CAPSULA CINEMATOGRÁFICA </h2>
                 </div> <!-- end of col -->
             </div>
-             {% if ficcion %}
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="turquoise">Ficción:</h3>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                {% for fic in ficcion %}
-                <div class="col-lg-2">
-                    
-                    <!-- Video Preview -->
-                    <div class="image-container">
-                        <div class="video-wrapper">
-                            <a class="popup-youtube" href="{{ fic.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid people" src="{{base_url()}}{{ fic.ATVT_image }}" alt="alternative">
-                                <span class="video-play-button">
-                                    <span></span>
-                                </span>
-                            </a>
-                        </div> <!-- end of video-wrapper -->
-                    </div> <!-- end of image-container -->
-                    <h4>{{ fic.ATVT_title }} </h4>
-                    <h5>{{ fic.ATVT_description }}</h5>
-                    <h6>{{ fic.ATVT_invited }}</h6>
-                    <!-- end of video preview -->
-                </div> <!-- end of col -->
-                {% endfor %}
-            </div> <!-- end of row -->
-            {% endif %}
-            {% if documental %}
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="turquoise">Documental:</h3>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                {% for doc in documental %}
-                <div class="col-lg-2">
-                    <!-- Video Preview -->
-                    <div class="image-container">
-                        <div class="video-wrapper">
-                            <a class="popup-youtube" href="{{ doc.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid people" src="{{base_url()}}{{ doc.ATVT_image }}" alt="alternative">
-                                <span class="video-play-button">
-                                    <span></span>
-                                </span>
-                            </a>
-                        </div> <!-- end of video-wrapper -->
-                    </div> <!-- end of image-container -->
-                    <h4>{{ doc.ATVT_title }} </h4>
-                    <h5>{{ doc.ATVT_description }}</h5>
-                    <h6>{{ doc.ATVT_invited }}</h6>
-                    <!-- end of video preview -->
-                </div> <!-- end of col -->
-                {% endfor %}
-            </div> <!-- end of row -->
-                {% endif %}
-             {% if experimental %}
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="turquoise">Experimental:</h3>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-           
-            <div class="row">
-                {% for exp in experimental %}
-                <div class="col-lg-2">
-                    <!-- Video Preview -->
-                    <div class="image-container">
-                        <div class="video-wrapper">
-                            <a class="popup-youtube" href="{{ exp.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid people" src="{{base_url()}}{{ exp.ATVT_image }}" alt="alternative">
-                                <span class="video-play-button">
-                                    <span></span>
-                                </span>
-                            </a>
-                        </div> <!-- end of video-wrapper -->
-                    </div> <!-- end of image-container -->
-                    <h4>{{ exp.ATVT_title }} </h4>
-                    <h5>{{ exp.ATVT_description }}</h5>
-                    <h6>{{ exp.ATVT_invited }}</h6>
-                    <!-- end of video preview -->
-                </div> <!-- end of col -->
-                {% endfor %}
-            </div> <!-- end of row -->
-            {% endif %}
-            {% if videoclip %}
-           <div class="row">
-                {% for vid in videoclip %}
-                <div class="col-lg-2">
-                    <!-- Video Preview -->
-                    <div class="image-container">
-                        <div class="video-wrapper">
-                            <a class="popup-youtube" href="{{ vid.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid people" src="{{base_url()}}{{ vid.ATVT_image }}" alt="alternative">
-                                <span class="video-play-button">
-                                    <span></span>
-                                </span>
-                            </a>
-                        </div> <!-- end of video-wrapper -->
-                    </div> <!-- end of image-container -->
-                    <h4>{{ vid.ATVT_title }} </h4>
-                    <h5>{{ vid.ATVT_description }}</h5>
-                    <h6>{{ vid.ATVT_invited }}</h6>
-                    <!-- end of video preview -->
-                </div> <!-- end of col -->
-                {% endfor %}
-            </div> <!-- end of row -->
-            {% endif %}
-            {% if publicitaria %}
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="turquoise">Publicitaria:</h3>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                {% for pub in publicitaria %}
-                <div class="col-lg-2">
-                    <!-- Video Preview -->
-                    <div class="image-container">
-                        <div class="video-wrapper">
-                            <a class="popup-youtube" href="{{ pub.ATVT_link }}" data-effect="fadeIn">
-                                <img class="img-fluid people" src="{{base_url()}}{{ pub.ATVT_image }}" alt="alternative">
-                                <span class="video-play-button">
-                                    <span></span>
-                                </span>
-                            </a>
-                        </div> <!-- end of video-wrapper -->
-                    </div> <!-- end of image-container -->
-                    <h4>{{ pub.ATVT_title }} </h4>
-                    <h5>{{ pub.ATVT_description }}</h5>
-                    <h6>{{ pub.ATVT_invited }}</h6>
-                    <!-- end of video preview -->
-                </div> <!-- end of col -->
-                {% endfor %}
-            </div> <!-- end of row -->
-            {% endif %}
+                    <!-- end of row -->
+                    <table id="sample_1" class="hover" style="width:100% ;font-size: small;">
+                        <thead class="turquoise">
 
-        </div> <!-- end of container -->
-    </div> <!-- end of basic-3 -->
-    <!-- end of video -->
+                            <th>
+                                TITULO
+                            </th>
+                            <th>
+                                DIRECTOR
+                            </th>
+                            <th>
+                                PAIS
+                            </th>
+                            <th>
+                                CATEGORIA
+                            </th>
+                            <th>
+                                VER
+                            </th>
+                        </thead>
+                    </table>
+                </div> <!-- end of col -->
+            </div> <!-- end of container -->
+        </div> <!-- end of basic-3 -->
+        <!-- end of video -->
+    </div>
 
-
-    <div class="basic-3">
+    <!-- sala de cine -->
+    <div class="basic-3" id="rep">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="turquoise">CAPSULA LITERARIA </h2>
+                    <h2 class="turquoise">SALA DE CINE</h2>
                 </div> <!-- end of col -->
             </div>
-            {% if literal %}
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="turquoise">Cuentos - Guiones:</h3>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                {% for lit in literal %}
-                <div class="col-lg-6">
-                    <!-- Video Preview -->
-                    <div class="image-container">
-                        <div class="video-wrapper">
-                            <img class="img-fluid" src="{{base_url()}}{{ lit.ATVT_image }}" alt="alternative">
-                        </div> <!-- end of video-wrapper -->
-                    </div> <!-- end of image-container -->
-                    <h4>{{ lit.ATVT_title }} </h4>
-                    <h5>{{ lit.ATVT_description }}</h5>
-                    <h6>{{ lit.ATVT_invited }}</h6>
-                    <!-- end of video preview -->
-                </div> <!-- end of col -->
-                {% endfor %}
-            </div> <!-- end of row -->
-            {% endif %}
+                    <div class="col-md-4">
+
+                        <h6>
+                            <div class="" name="titulo" id="titulo"></div>
+                        </h6>
+
+                        <h6>
+                            <div class="" name="descripcion" id="descripcion"></div>
+                        </h6>
+
+                        <h6>
+                            <div class="" name="invitados" id="invitados"></div>
+                        </h6>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="" name="imagen" id="imagen"></div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="col-lg-12">
+                    <div class="" name="prueba" id="prueba"><iframe width="100%" height="400" src="https://www.youtube.com/embed/WKYyZTQUNTI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-    
-    
-    
-    
+
+
+
     <!-- About -->
     <div id="about" class="basic-4">
         <div class="container">
@@ -366,9 +215,6 @@
             </div> <!-- end of row -->
             <div class="row">
                 <div class="col-lg-12">
-
-
-
                     <!-- Team Member -->
                     <div class="team-member">
                         <div class="image-wrapper">
@@ -697,6 +543,24 @@
     </div>
     <!-- End recon About -->
 
+    <!-- Customers -->
+    <div class="slider-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="turquoise">NUESTROS ALIADOS</h3>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-fluid" src="{{base_url()}}assets/images/logos_aliados.jpg">
+                </div>
+            </div> <!-- end of row -->
+
+        </div> <!-- end of container -->
+    </div> <!-- end of slider-1 -->
+    <!-- end of customers -->
+
     <!-- Contact -->
     <div id="contact" class="form-2">
         <div class="container">
@@ -711,46 +575,7 @@
                     </ul>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
-            <div class="row collapse">
-                <div class="col-lg-6">
-                    <div class="map-responsive">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100939.98555098464!2d-122.507640204439!3d37.757814996609724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sro!4v1498231462606" allowfullscreen></iframe>
-                    </div>
-                </div> <!-- end of col -->
-                <div class="col-lg-6">
 
-                    <!-- Contact Form -->
-                    <form id="contactForm" data-toggle="validator" data-focus="false">
-                        <div class="form-group">
-                            <input type="text" class="form-control-input" id="cname" required>
-                            <label class="label-control" for="cname">Name</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control-input" id="cemail" required>
-                            <label class="label-control" for="cemail">Email</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control-textarea" id="cmessage" required></textarea>
-                            <label class="label-control" for="cmessage">Your message</label>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group checkbox">
-                            <input type="checkbox" id="cterms" value="Agreed-to-Terms" required>I have read and agree with Evolo's stated <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms Conditions</a>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="form-control-submit-button">SUBMIT MESSAGE</button>
-                        </div>
-                        <div class="form-message">
-                            <div id="cmsgSubmit" class="h3 text-center hidden"></div>
-                        </div>
-                    </form>
-                    <!-- end of contact form -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
         </div> <!-- end of container -->
     </div> <!-- end of form-2 -->
     <!-- end of contact -->
@@ -830,16 +655,83 @@
 
     <!-- Scripts -->
     <script src="{{base_url()}}assets/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="{{base_url()}}assets/js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="{{base_url()}}assets/js/popper.min.js"></script><!--  Popper tooltip library for Bootstrap -->
     <script src="{{base_url()}}assets/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
-    <script src="{{base_url()}}assets/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="{{base_url()}}assets/js/jquery.easing.min.js"></script><!--  jQuery Easing for smooth scrolling between anchors -->
     <script src="{{base_url()}}assets/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
     <script src="{{base_url()}}assets/js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
     <script src="{{base_url()}}assets/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="{{base_url()}}assets/js/scripts.js"></script> <!-- Custom scripts -->
-    <script src="{{base_url()}}assets/js/dropzone/dropzone.js"></script> <!-- Custom scripts -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
     <script>
         $(document).ready(function() {
+            var dt;
+            dt = $('#sample_1');
+            dt.DataTable({
+                lengthMenu: [
+                    [5, 10, 25, 50, -1],
+                    [5, 10, 25, 50, "Todo"],
+                ],
+                "order": [
+                    [3, "asc"]
+                ],
+                "ajax": {
+                    url: "{{ base_url() }}Activity/listardos",
+                    type: 'GET'
+                },
+                "scrollX": true,
+                dom: 'Bfrtip',
+                columns: [{
+                        data: 'ATVT_title'
+                    },
+                    {
+                        data: 'ATVT_description'
+                    },
+                    {
+                        data: 'ATVT_invited',
+                    },
+                    {
+                        data: 'ATVT_categoria',
+                    },
+
+                    {
+                        "defaultContent": "<button id='informacion' name='informacion' title='Ver informacion' type='button' class='form-control-submit-button history'><a class='nav-link page-scroll' href='#rep'>VER</a></button>"
+                    },
+                ],
+
+                pageLength: 10,
+                rowCallback: function(row, data) {
+                    if (data['ATVT_categoria'] == "0") {
+                        $($(row).find("td")[3]).html("ninguna");
+                    } else if (data['ATVT_categoria'] == "1") {
+                        $($(row).find("td")[3]).html("Ficción");
+                    } else if (data['ATVT_categoria'] == "2") {
+                        $($(row).find("td")[3]).html("Documental");
+                    } else if (data['ATVT_categoria'] == "3") {
+                        $($(row).find("td")[3]).html("Experimental");
+                    } else if (data['ATVT_categoria'] == "4") {
+                        $($(row).find("td")[3]).html("Videoclip");
+                    } else if (data['ATVT_categoria'] == "5") {
+                        $($(row).find("td")[3]).html("Publicitaria");
+                    } else if (data['ATVT_categoria'] == "6") {
+                        $($(row).find("td")[3]).html("Cuentos - Guiones");
+                    }
+
+                },
+            });
+            dt.on('click', '.history', function(e) {
+                e.preventDefault();
+                $tr = $(this).closest('tr');
+                var O = dt.DataTable().row($tr).data();
+                $("#titulo").html(O.ATVT_title);
+                $("#descripcion").html(O.ATVT_description);
+                $("#prueba").html('<iframe width="100%" height="400" src="' + O.ATVT_link + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+                $("#invitados").html(O.ATVT_invited);
+                $("#imagen").html('<img class="img-fluid people" src="{{ base_url() }}' + O.ATVT_image + '">');
+
+
+            });
 
 
 

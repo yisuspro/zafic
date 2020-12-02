@@ -35,6 +35,15 @@ class Activities extends CI_Model {
     *
     * @return row() | false
     */
+    public function listardos(){
+        $actividades = $this->db->select('*')->from('activities')->where('ATVT_state',2)->where('ATVT_categoria !=',7);
+        return $actividades->get();
+    }
+    /**
+    * funcion para la verificacion y envio de los datos dell usuario logueado.
+    *
+    * @return row() | false
+    */
     public function cambioEstado($id){
         $queri=$this->db->select('ATVT_state')->from('activities')->where('ATVT_PK',$id)->get()->result() ;
        //return $queri[0]->ATVT_state;
